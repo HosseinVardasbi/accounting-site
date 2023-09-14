@@ -1,0 +1,403 @@
+*:before, *:after , html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,input, textarea,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align:baseline;
+    background:transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+@font-face {
+    font-family: "IRANSans";
+    src: url("../../../content/fonts/IRANSansWeb.eot");
+    src: url("../../../content/fonts/IRANSansWeb.ttf") format("truetype"), url("../../../content/fonts/IRANSansWeb.woff2") format("woff2"), url("../../../content/fonts/IRANSansWeb.eot?#iefix") format("embedded-opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+  
+body {
+    line-height:1.5;
+    direction:rtl; 
+    font-family: "IRANSans";
+    background: linear-gradient( 125deg , #4359bd 0% , #2e429c  100%); 
+
+}
+html , body {
+    width:100%;
+    height: 100%;
+}
+.main{
+    display: block;
+    margin: auto;
+    text-align: center;
+    width:100%;
+    height: 100%;
+}
+.main::after{
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.login-holder{
+    display: inline-block;
+    margin: 20px;
+    vertical-align: middle;
+
+    position: relative;
+    /* height: 400px; */
+}
+.login-holder > section{
+    float: left;
+    
+    width:350px;
+}
+.login-input{
+    /* height: 350px; */
+    margin-top:25px;
+    background:#F8FFFB;
+    border-radius: 5px;
+    box-shadow: -3px 7px 20px -10px rgba(18, 66, 21, 0.67);
+    padding-bottom: 20px;
+    padding: 30px;
+
+}
+.login-input > header{
+    margin: 10px auto 30px;
+    padding: 10px;
+    background: rgb(198, 238, 212);
+    border-radius: 5px;
+}
+.login-input > header > h3{
+    color: rgb(22, 127, 57);
+    position: relative;
+    font-size: 17px;
+}
+
+.admin-info{
+    /* height: 400px; */
+    height: 110%;
+    top:-2.5%;
+    right: 5px;
+    position: absolute;
+    background-color: rgb(228, 233, 72);
+    background-image: url('../../../content/img/logo-big.png');
+    background-position: center center;
+    background-size: 300px;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    margin-left: -6px;
+    box-shadow: -3px 7px 30px -10px rgba(14, 109, 50, 0.39);
+}
+
+.input-text , .input-check{
+    position: relative;
+    margin: 15px auto;
+    width:230px;
+     text-align: right;
+}
+.input-text {
+    border: 2px solid #dadada;
+    background: #fff;
+    transition: .4s;
+    border-radius: 5px;
+}
+.input-text > h5{
+    position: absolute;
+    top:8px;
+    right:38px;
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+    height: 25px;
+    line-height: 25px;
+    transition: .4s;
+    z-index: 1;
+}
+.input-text > img{
+    width:20px;
+    margin-right:8px;
+    vertical-align: middle;
+}
+.input-text > input[type=text] ,
+.input-text > input[type=email] ,
+.input-text > input[type=password]{
+    width:190px;
+    height: 40px;
+    padding: 5px 10px;
+    padding-right: 0;
+    border:none;
+    background: none;
+    font-size: 15px;
+    color:rgb(110, 110, 110);
+    position: relative;
+    z-index: 2;
+    transition: .4s;
+    vertical-align: middle;
+}
+.input-text.is-focus{
+    box-shadow: -2px 4px 8px -3px rgba(99, 155, 234, 0.281);
+    border: 2px solid rgb(47, 165, 219);
+    background: rgb(247, 255, 255);
+}
+.input-text.is-full {
+    border: 2px solid #eaeaea;
+    background: #fafafa;
+}
+.input-text.is-focus > h5 , .input-text.is-full > h5{
+    color: transparent;
+    opacity: 0;
+    letter-spacing:15px;
+}
+
+.input-text.is-error > h5 {
+    top:-15px;
+    color: #888;
+    font-size: 15px;
+}
+
+
+/* Input Radio & Checkbox */
+
+
+.input-check > label {
+    font-size: 1.4rem;
+    cursor: pointer;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 7px;
+  }
+  
+  .input-check.input-vertical > label {
+    display: block;
+    margin: 0 15px 7px 0;
+  }
+  
+  .input-check > label > span {
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+  .input-check > label > input {
+    display: none;
+  }
+  
+  .input-check > label > input + span {
+    color: #757575;
+    font-size: 14px;
+  }
+  
+  .input-check > label:hover > input + span {
+    color: #444;
+  }
+  
+  .input-check > label > input:checked + span {
+    color: #17A855;
+  }
+  
+  .input-check > label > input[type=checkbox] + span:before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-color: #f8f8f8;
+    border: 2px solid #dadada;
+    border-radius: 5px;
+    line-height: 20px;
+    margin-left: 6px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    vertical-align: middle;
+    text-align: center;
+    background-size: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../../content/img/tick.png);
+  }
+  
+  .input-check > label > input[type=checkbox]:checked + span:before {
+    content: "";
+    background-size: 13px;
+    background-color: #ddf3e0;
+    border: 2px solid #45BF55;
+  }
+  
+  .input-check > label > input[type=radio] + span:before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    color: #17A855;
+    background-color: #f8f8f8;
+    border: 2px solid #dadada;
+    border-radius: 100%;
+    margin-left: 6px;
+    -webkit-transition: .2s;
+    transition: .2s;
+    vertical-align: middle;
+    text-align: center;
+    background-size: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../../content/img/radio.png);
+  }
+  
+  .input-check > label > input[type=radio]:checked + span:before {
+    content: "";
+    background-size: 10px;
+    background-color: #ddf3e0;
+    border: 2px solid #45BF55;
+  }
+  
+  .input-check > p {
+    width: 100%;
+    padding: 5px;
+    display: block;
+    background: none;
+    font-size: 1.2rem;
+    position: relative;
+    color: #bbb;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    margin: 5px 0;
+  }
+  
+  .input-check:hover > p {
+    color: #777;
+  }
+
+  .btn-holder{
+      width:230px;
+      margin:auto;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+  }
+.btn{
+  border: none;
+  display: inline-block;
+  height: 35px;
+  padding: 0 25px;
+  border-radius: 35px;
+  margin: 0px 5px 5px;
+  font-weight: bold;
+  font-family: iransans;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  vertical-align: middle;
+  outline: none;
+  margin-top: 10px;
+
+}
+.btn:hover{
+    background: #666;
+    color: #fff;
+    box-shadow: 2px 4px 5px -3px rgba(0,0,0,0.2);
+}
+.btn:active{
+    transform:scale(.98);
+    transition: .1s;
+}
+.btn:focus{
+   outline:0 !important;
+    background: #444;
+    color: #eee;
+    /*border-bottom: 4px solid #888;*/
+    outline-offset: -2px;
+}
+.btn::-moz-focus-inner { 
+  border: 0; 
+}
+
+
+.btn-login{
+    background: #2cb77c;
+}
+
+.link {
+    display: inline-block;
+    padding: 5px 10px 5px 5px;
+    margin: 0 5px;
+    color: #3971E2;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    vertical-align: middle;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 12px;
+  }
+  
+  .link:hover {
+    color: #6591e9;
+    text-decoration: underline;
+  }
+
+
+@media only screen and (max-width: 767px) {
+    .login-holder{
+        width:auto;
+        width:unset;
+        height:auto;
+        height:unset;
+        margin: 0;
+    }
+    .admin-info{
+        display: none;
+    }
+    .login-input{
+        float: none;
+        width: 100%;
+        margin:  0;
+        display: block;
+    }
+}
+

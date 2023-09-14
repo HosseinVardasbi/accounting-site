@@ -1,0 +1,61 @@
+$path-font:"../../../content/fonts/";
+$path-img:"../../../content/img/";
+
+$color-body:#f7faff;
+$color-side:#4359bd;
+$color-sideB:#2e429c;
+
+$color-third:#a1a1a1;
+$color-second:#757575;
+$color-first:#444;
+$color-title:#5092C5;
+$color-primary:#3971E2;
+$color-danger:#DC3333;
+$color-success:#0e8a44;
+$color-warning:#F2881F;
+
+$shadow-main : 0 5px 16px -5px rgba(5, 50, 101, 0.44);
+
+$radius-main:10px;
+$radius-form:5px;
+
+$space-main:12px;
+
+$trans-time:.3s;
+
+$font-main:"Iransans";
+
+@mixin btn-shadow($color){
+    box-shadow: 0 3px 10px -4px $color;
+}
+@mixin btn-shadow-hover($color){
+    box-shadow: 0 4px 15px -6px $color;
+}
+
+$break-xsmall: 384px;
+$break-small: 576px;
+$break-medium: 768px;
+$break-large: 992px;
+$break-xlarge: 1200px;
+$break-xxlarge: 1920px;
+
+@mixin respond-to($media) {
+  @if $media == xs {
+    @media only screen and (max-width: $break-xsmall) { @content; }
+  }
+  @else if $media == sm {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == md {
+    @media only screen and (max-width: $break-medium ) { @content; }
+  }
+  @else if $media == lg {
+    @media only screen and (max-width: $break-large) { @content; }
+  }
+  @else if $media == xl {
+    @media only screen and (max-width: $break-xlarge) { @content; }
+  }
+  @else if $media == xxl {
+    @media only screen and (min-width: $break-xlarge) { @content; }
+  }
+}
