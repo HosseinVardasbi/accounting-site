@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "داشبرد";
+    Layout = "_myLayout";
+}
+    <header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="~/content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">داشبرد</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+    </header>
+   <section class="dashboard-holder">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+            
+                        <div class="input-text input-text-icon mb-5">
+                            <input name="search" id="search" type="text" placeholder="جستجو بر اساس نام و قیمت و آیدی مشتری" />
+                            
+                            <div class="input-icon">
+                                <img onclick="PagerClick()" src="~/content/img/search.png" />
+                            </div>
+                          
+                        </div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 dashboard-nav">
+                                <a asp-controller="Factors" asp-action="Create">
+                                    <div>
+                                        <img src="~/content/img/add.png"/>
+                                    </div>
+                                    <h2>فاکتور جدید</h2>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 dashboard-nav">
+                                <a asp-controller="Customer" asp-action="AddCustomer">
+                                    <div>
+                                        <img src="~/content/img/add.png"/>
+                                    </div>
+                                    <h2>مشتری جدید</h2>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 dashboard-nav">
+                                <a asp-controller="Factors" asp-action="Index">
+                                    <div>
+                                        <img src="~/content/img/menu.png"/>
+                                    </div>
+                                
+                                    <h2>لیست فاکتورها</h2>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 dashboard-nav">
+                                <a asp-controller="Customer" asp-action="Index">
+                                    <div>
+                                        <img src="~/content/img/menu.png"/>
+                                    </div>
+                                
+                                    <h2>لیست مشتری ها</h2>
+                                </a>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                 
+                
+            </section>
+@section scripts{
+<script type="text/javascript">
+            function PagerClick() {
+                
+                var z = document.getElementById("search").value;
+               //document.getElementById("hfCurrentPage2").value = 2;
+               // document.forms[0].submit();
+                //alert(index);
+                $.ajax({
+                    url: '/Customer/AjaxIndex',
+                     data: { search: z},
+                     success: function(response) {window.location.href = response.redirectToUrl; }
+                    }).done(function() {
+                    //alert('Added'); 
+                    });
+            }
+</script>
+}

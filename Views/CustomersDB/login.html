@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه ورود</title>
+
+    <link href="content/css/admin/login.css" rel="stylesheet" />
+    
+    <script src="content/scripts/jquery-3.1.1.min.js"></script>
+
+
+</head>
+
+<body>
+    <main class="main">
+        <div class="login-holder">
+            <section class="login-input">
+                <header>
+                    <h3>ورود به سیستم مدیریت فاکتور</h3>
+                </header>
+
+                <section>
+                
+                    <div class="input-text">
+                        <h5> نام کاربری </h5>
+                        <img src="content/img/user2.png" />
+                        <input type="text" />
+                    </div>
+                   
+                    <div class="input-text">
+                        <h5> کلمه عبور </h5>
+                        <img src="content/img/locked.png" />
+                        <input type="password" />
+                    </div>
+                    <div class="input-check">
+                        <label>
+                            <input type="checkbox" name="age" />
+                              
+                            <span>مرا به خاطر بسپار</span>
+                        </label>
+                    </div>
+                    <div class="btn-holder">
+                         <button type="submit" class="btn btn-login">ورود </button>
+                    </div>
+                </section>
+
+            </section>
+ 
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function(){
+            
+            checkInputFull();
+
+        }); 
+         //-- Text
+        
+        
+        $('.input-text > input[type=text] ,.input-text > input[type=password] , .input-text > textarea').on('focus', function(){
+
+            $(this).parent('div').addClass('is-focus');
+            $(this).parent('div').removeClass('is-full');
+            
+        });
+        $('.input-text > input[type=text] ,.input-text > input[type=password], .input-text > textarea').on('change', function(){
+            heckInputFull();
+
+        });
+        $('.input-text > input[type=text] ,.input-text > input[type=password], .input-text > textarea').on('blur', function(){
+           
+            $(this).parent('div').removeClass('is-focus');
+              
+            if($(this).val().length > 0){
+                $(this).parent('div').addClass('is-full');
+            }else{
+                $(this).parent('div').removeClass('is-full');
+            }
+            
+        });
+        
+        function checkInputFull(){
+
+             $('.input-text > input[type=text] ,.input-text > input[type=password], .input-text > textarea').blur();
+        }
+    </script>
+
+</body>
+
+</html>

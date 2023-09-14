@@ -1,0 +1,100 @@
+﻿@model DataLayer02.Domain.Customer
+
+@{
+    ViewData["Title"] = "جزئیات مشتری";
+    Layout = "_myLayout";
+}
+
+ <header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">جزئیات مشتری @Model.Name</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time">امروز یکشنبه ۴ اسفند ۱۳۹۸</time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <article class="form-holder">
+                <ul class="details-item">
+                    <li>    
+                        <span> نام و نام خانوادگی</span>
+                        <div> @Model.Name </div>
+                    </li>
+                    <li>    
+                        <span> شماره تماس</span>
+                        <div> @Model.PhoneNumber
+                        </div>
+                    </li>
+                    <li>    
+                        <span> آدرس</span>
+                        <div> @Model.Adress </div>
+                    </li>
+                    <li>    
+                        <span> مانده اولیه</span>
+                        <div class="price-format"> @ViewBag.bankDeptStatus  </div>
+                    </li>
+                    <li>    
+                        <span> بدهی فاکتور ها</span>
+                        <div class="price-format"> @ViewBag.factorDeptStatus  </div>
+                    </li>
+                    <li>    
+                        <span> مجموع کل بدهی</span>
+                        <div class="price-format"> @ViewBag.wholeDeptStatus  </div>
+                    </li>
+                    <li>    
+                        <span> لیست فاکتورها </span>
+                        <div> 
+                            <a asp-controller="Factors" 
+                            asp-action="Index" asp-route-search="@Model.Id $$$">مشاهده فاکتورها</a>
+                        </div>
+                    </li>
+                    <li>    
+                        <span> ویرایش </span>
+                        <div> 
+                            <a asp-route-id="@Model.Id" asp-action="UpdateCustomer">ویرایش مشتری</a>
+                        </div>
+                    </li>
+                </ul>
+            </article> 
+
+        </section>
+
+
+@*<h1>Details</h1>*@
+
+@*<div>*@
+    @*<h4>Customer</h4>*@
+    @*<hr />*@
+    @*<dl class="row">*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.Name)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.Name)*@
+        @*</dd>*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.PhoneNumber)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.PhoneNumber)*@
+        @*</dd>*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.Adress)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.Adress)*@
+        @*</dd>*@
+    @*</dl>*@
+@*</div>*@
+@*<div>*@
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+    @*<a asp-action="Index">Back to List</a>*@
+@*</div>*@

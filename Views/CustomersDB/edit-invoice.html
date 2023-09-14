@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="content/css/admin/style.css">
+
+   
+</head>
+
+<body>
+    <aside class="sidebar">
+        <header class="side-header">
+            <div class="site-info">
+                <div class="close-menu"><img src="content/img/close.png"></div>
+                <a href="#"><img src="content/img/logo.png"></a>
+            </div>
+            <div class="user-control">
+                <a href="#"><img src="content/img/user.png"></a>
+                <a href="#"><img src="content/img/logout.png"></a>
+            </div>
+        </header>
+        <nav class="side-body">
+            <ul class="menu">
+                <li class="active">
+                    <a href="#">
+                        <img src="content/img/dashboard.png">
+                        <h3> داشبرد</h3>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a>
+                        <img src="content/img/barcode.png">
+
+                        <h3>فاکتورها </h3>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="#"> افزودن فاکتور </a>
+                        </li>
+                        <li>
+                            <a href="#"> لیست فاکتورها </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a>
+                        <img src="content/img/users.png">
+
+                        <h3> مشتری </h3>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="#"> افزودن مشتری </a>
+                        </li>
+                        <li>
+                            <a href="#"> لیست مشتری ها </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="content/img/credit.png">
+
+                        <h3> لیست بدهی ها </h3>
+                    </a>
+
+
+                </li>
+
+            </ul>
+  
+        </nav>
+    </aside>
+
+
+    <main class="main">
+        <header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">ویرایش فاکتور</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time">امروز یکشنبه ۴ اسفند ۱۳۹۸</time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <fieldset class="container-fluid">
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <div class="input-drop">
+                            <label> نام مشتری </label>
+
+                            <select class="search-select">
+                                <option value="0">علی احمدی</option>
+                                <option value="1">حسین محمودی</option>
+                            </select>
+
+
+
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label>  </label>
+
+                            <div class="mt-4">
+                                <span class="color-default">نام مشتری ثبت نشده؟</span>
+                            <a href="#">اضافه کنید</a>
+
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label> شماره فاکتور </label>
+
+                            <input type="number" />
+
+
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label> مبلغ فاکتور </label>
+
+                            <input type="text" class="price_type"/>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-text">
+                            <label>توضیحات </label>
+
+                            <textarea></textarea>
+
+                        </div>
+                    </div>
+             
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-text">
+                            <label>پرداختی ها </label>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="pay-wrapper">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-drop">
+                                <label> نحوه پرداخت </label>
+    
+                                <select>
+                                    <option value="0">نقدی</option>
+                                    <option value="1">دستگاه پوز</option>
+                                    <option value="2">کارت به کارت</option>
+                                    <option value="3">چک</option>
+                                </select>
+    
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-text">
+                                <label> مبلغ پرداخت</label>
+    
+                                <input type="text" class="price_type"/>
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clean-float">
+                    <div class="float-right">
+                        <button class="btn btn-default-outline add-payment">پرداخت بیشتر </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <footer class="form-footer clean-float">
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary">ذخیره تغییرات </button>
+                            </div>
+
+                            <div class="float-left">
+                                <a href="#" class="link link-back">بازگشت</a>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+
+            </fieldset>   
+
+
+        </section>
+
+    </main>
+
+
+
+    <script src="content/scripts/jquery-3.1.1.min.js"></script>
+    <script src="content/scripts/adminscript.js"></script>
+
+ 
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+﻿@using HamedProject02.Helper
+@model IEnumerable<DataLayer02.Domain.Factor>
+@{
+    ViewData["Title"] = "CustomerIdFactor";
+}
+
+<h1>CustomerIdFactor</h1>
+@*@foreach (var item in Model)
+{*@
+    <p>
+    <a asp-action="CreateByCustomer" asp-route-id="@ViewBag.Id" asp-route-Name="@ViewBag.Name">Factor>Create New</a>
+    </p>
+@*}*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FactorNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FactorNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @DateConverter.miladiToShamsi(item.DateTime.Value)
+                @*@Html.DisplayFor(modelItem => DateConverter.miladiToShamsi(item.DateTime))*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

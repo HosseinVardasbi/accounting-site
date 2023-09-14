@@ -1,0 +1,249 @@
+﻿@using HamedProject02.Helper
+
+@model HamedProject02.Models.OutPutCustomerPaging
+
+@{
+    ViewData["Title"] = "لیست مشتری";
+    Layout = "_myLayout";
+}
+
+
+    @{var pageCount = Math.Ceiling((decimal)Model.totalRecord / 10);}
+  
+    @if (Model.search != null)
+    {
+        @Html.HiddenFor(p => p.search, Model.search)
+    }
+    
+    @*<input type="hidden" id="search" value="@ViewBag.search" name="search" />*@
+    <header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="~/content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">لیست مشتری</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+             <fieldset class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        @if (Model.search == null)
+                        {
+                        <a asp-controller="Customer"
+                        asp-action="AddCustomer" class="btn btn-success-outline"> <img src="~/content/img/add.png"> مشتری
+                            جدید </a>
+                        }
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+                        @if (Model.search == null)
+                        {
+                          
+                        <form asp-controller="Customer" asp-action="Index" >
+                        <div class="input-text input-text-icon">
+                            <input type="text" asp-for="@Model.search" asp-route-search="@Model.search" name="search" placeholder="جستجو بر اساس نام و شماره و آدرس" />
+                            <button type="submit" class="input-icon">
+                                @*<a asp-action="Index" asp-controller="Customer">*@
+                                    @*<input type="submit"/>  *@
+                                <img src="~/content/img/search.png" /> 
+                                @*</a>*@
+                            </button>
+                        </div>
+                        </form>
+                        }
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        نام
+                                    </th>
+                                    <th scope="col">
+                                        شماره تماس
+                                    </th>
+                                    <th scope="col">
+                                        فاکتورها
+                                    </th>
+
+                                    <th scope="col">جزئیات</th>
+                                    <th scope="col">ویرایش اطلاعات</th>
+                                    @*<th scope="col">حذف</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.customers)
+                                {
+                                    
+                                
+                                <tr>
+                                    <td data-label="نام">
+                                        @item.Name
+                                    </td>
+                                    <td data-label="شماره تماس">
+                                        @item.PhoneNumber
+
+                                    </td>
+                                    <td data-label="فاکتورها">
+                                        <a asp-action="Index" asp-controller="Factors"
+                                        asp-route-search="@item.Id $$$"
+                                        asp-route-id="@item.Id" asp-route-Name="@item.Name">لیست فاکتورها</a>
+                                    </td>
+
+                                    <td data-label="جزئیات">
+                                         <a asp-action="Details" asp-route-id="@item.Id">مشاهده</a> 
+                                    </td>
+                                    <td data-label="ویرایش اطلاعات">
+                                            <a asp-action="UpdateCustomer" asp-route-id="@item.Id">ویرایش
+                                            اطلاعات
+                                            </a> 
+                                    </td>
+                                    @*<td data-label="حذف">
+                                        <a asp-action="DeleteCustomer" asp-route-id="@item.Id"><img src="~/content/img/remove.png"/></a>
+                                    </td>*@
+
+
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="paginate">
+                            <ul class="paging-t">
+                                
+                                <li>
+                                    @if (Model.currentPage > 1)
+                                    {
+                                        <a class="perv-page" asp-controller="Customer" asp-action="Index"
+                                    asp-route-pageNumber="@ViewBag.privPage" 
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10"></a>
+                                    }
+                                </li>
+                                @for (int i = 1; i <= pageCount; i++){
+                                <li>
+                                    @if (Model.currentPage == i)
+                                    {
+                                        <a class="current" asp-controller="Customer" asp-action="Index"
+                                    asp-route-pageNumber="@i"
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10">@i</a>
+                                    }else{
+                                        <a asp-controller="Customer" asp-action="Index"
+                                    asp-route-pageNumber="@i" 
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10">@i</a>
+                                    }
+                                    @*}*@
+                                </li>
+                                }
+                                @*<li>
+                                    <text> ... </text>
+                                </li>*@
+                                @*<li>
+                                    <a href="#">@pageCount</a>
+                                </li>*@
+                        
+                                <li>
+                                    @if (ViewBag.tempPaige <= pageCount)
+                                    {
+                                        <a class="next-page" asp-controller="Customer" asp-action="Index"
+                                    asp-route-pageNumber="@ViewBag.tempPaige"
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10"></a>
+                                    }
+                                    
+                                </li>
+                            
+                            </ul>
+        
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+ 
+        </section>
+   
+@*<table class="table">*@
+    @*<thead>*@
+        @*<tr>*@
+            @*<th>*@
+                @*@Html.DisplayNameFor(model => model.customers)*@
+            @*</th>*@
+            @*<th></th>*@
+        @*</tr>*@
+    @*</thead>*@
+    @*<tbody>*@
+@*@foreach (var item in Model.customers) {*@
+        @*<tr>*@
+            @*<td>*@
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+            @*</td>*@
+            @*<td>*@
+                @*<a asp-action="UpdateCustomer" asp-route-id="@item.Id">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                @*<a asp-action="DeleteCustomer" asp-route-id="@item.Id">Delete</a>*@
+                @*<a asp-action="CustomerIdFactor" asp-controller="Factors" asp-route-id="@item.Id" asp-route-Name="@item.Name">Factor</a>*@
+                @*<a href="/Factors/Index/@item.Id">  </a>*@
+                @*@Html.ActionLink("Factor", "Index", "Factors", new {id = item.Id}, null)*@
+            @*</td>*@
+        @*</tr>*@
+
+    @*</tbody>*@
+@*</table>*@
+
+    @*var pageCount = Model.totalRecord / 2;*@
+
+@*<table cellpadding="0" cellspacing="0">*@
+                @*<tr>*@
+                    @*@for (int i = 1; i <= pageCount; i++)*@
+                    @*{*@
+                        @*<td>*@
+                            @*@if (i != Model.currentPage)*@
+                            @*{*@
+                                @*<input type="submit" value="@i"    asp-controller="Customer" asp-action="Index" 
+                                asp-route-pageNumber="@i" asp-route-countRecord="2"
+                                >*@
+
+                               @* <a href="javascript:PagerClick(@i);">@i</a>*@
+                                @*<a href="Customer/Index/@i/2">@i</a>*@
+                            @*}*@
+                            @*else*@
+                            @*{*@
+                                @*<span>@i</span>*@
+                            @*}*@
+                        @*</td>*@
+                    @*}*@
+                @*</tr>*@
+@*</table>*@
+@*<input type="hidden" id="hfCurrentPage" name="pageNumber" />
+<input type="hidden" id="hfCurrentPage2" name="countRecord" />*@
+
+@*<script type="text/javascript">
+            function PagerClick(index) {
+               // document.getElementById("hfCurrentPage").value = index;
+               //document.getElementById("hfCurrentPage2").value = 2;
+               // document.forms[0].submit();
+                //alert(index);
+                $.ajax({
+                    url: '/Customer/Index',
+                     data: { pageNumber: index+1, countRecord: 2 }
+                    }).done(function() {
+                    alert('Added'); 
+                    });
+</script>*@

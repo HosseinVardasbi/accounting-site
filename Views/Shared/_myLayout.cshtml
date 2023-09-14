@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/content/css/admin/style.css">
+    <link rel="stylesheet" href="~/content/css/admin/persian-datepicker.min.css">
+    <style>
+        .input-icon{
+            background:none;
+            border:none;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <header class="side-header">
+            <div class="site-info">
+                <div class="close-menu"><img src="~/content/img/close.png"></div>
+                <a href="#"><img src="~/content/img/logo.png"></a>
+            </div>
+            <div class="user-control">
+                <a href="/Account/SignIn"><img src="~/content/img/user.png"></a>
+                <a href="/Account/SignOut"><img src="~/content/img/logout.png"></a>
+            </div>
+        </header>
+        <nav class="side-body">
+            <ul class="menu">
+                <li class="active">
+                    <a href="/Home/Index">
+                        <img src="~/content/img/dashboard.png">
+                        <h3> داشبرد</h3>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a>
+                        <img src="~/content/img/barcode.png">
+
+                        <h3>فاکتورها </h3>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="/Factors/Create"> افزودن فاکتور </a>
+                        </li>
+                        <li>
+                            <a href="/Factors/Index"> لیست فاکتورها </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a>
+                        <img src="~/content/img/users.png">
+
+                        <h3> مشتری </h3>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="/Customer/AddCustomer"> افزودن مشتری </a>
+                        </li>
+                        <li>
+                            <a href="/Customer/Index"> لیست مشتری ها </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="#">
+                        <img src="~/content/img/wallet.png">
+
+                        <h3> عملیات بانکی </h3>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/Debts/Create"> افزودن عملیات بانکی </a>
+                        </li>
+                        <li>
+                            <a href="/Debts/Index"> لیست عملیات بانکی </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+                <li>
+                    <a asp-action="DebtIndex" asp-controller="Factors">
+                        <img src="~/content/img/credit.png">
+
+                        <h3> لیست بدهی ها </h3>
+                    </a>
+
+
+                </li>
+
+            </ul>
+  
+        </nav>
+    </aside>
+
+
+    <main class="main">
+        @RenderBody()
+        @*<header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">داشبرد</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time">امروز یکشنبه ۴ اسفند ۱۳۹۸</time>
+            </div>
+
+        </header>*@
+
+        @*<section class="main-body">*@
+         
+         @*@RenderBody()*@
+           
+                
+                
+                
+
+
+        @*</section>*@
+
+    </main>
+
+
+
+    <script src="~/content/scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/content/scripts/adminscript.js"></script>
+    <script src="~/content/scripts/persian-date.min.js"></script>
+    <script src="~/content/scripts/persian-datepicker.min.js"></script>
+    @RenderSection("scripts",required:false)
+</body>
+
+</html>

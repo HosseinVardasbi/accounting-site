@@ -1,0 +1,85 @@
+﻿
+@model HamedProject02.Models.OutPutPaymentPaging
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@using(Html.BeginForm("Index", "Payments", FormMethod.Post))
+{
+     <b> Search </b> @Html.RadioButton("option", "FactorId") <text>FactorId</text>
+     @Html.RadioButton("option", "Id") <text>Id</text>
+    @Html.TextBox("search") <input type="submit" name="submit" value="Search" />
+<table class="table">
+    <thead>
+        <tr>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Factor)
+            </th>
+            <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.payments) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Factor.FactorNo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+var pageCount = Model.totalRecord / 2;
+
+<table cellpadding="0" cellspacing="0">
+                <tr>
+                    @for (int i = 1; i <= pageCount; i++)
+                    {
+                        <td>
+                            @if (i != Model.currentPage)
+                            {
+                                <input type="submit" value="@i"    asp-controller="Payments" asp-action="Index" 
+                                asp-route-pageNumber="@i" asp-route-countRecord="2"
+                                >
+
+                               @* <a href="javascript:PagerClick(@i);">@i</a>*@
+                                @*<a href="Customer/Index/@i/2">@i</a>*@
+                            }
+                            else
+                            {
+                                <span>@i</span>
+                            }
+                        </td>
+                    }
+                </tr>
+</table>
+}

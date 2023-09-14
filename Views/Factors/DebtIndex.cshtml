@@ -1,0 +1,181 @@
+﻿@using DataLayer02.Context
+@using DataLayer02.Domain
+@using HamedProject02.Features.Customer.Queries.SelectById
+@using HamedProject02.Helper
+@using MediatR
+@model HamedProject02.Models.OutPutDebtFactorPaging
+
+@{
+    ViewData["Title"] = "لیست بدهی";
+    Layout = "_myLayout";
+}
+@*@DB_context db;*@
+@{var pageCount = Math.Ceiling((decimal)Model.totalRecord / 10);}
+<header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="~/content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">لیست بدهی</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <fieldset class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <a asp-action="Create" class="btn btn-success-outline"> <img src="~/content/img/add.png"> فاکتور
+                            جدید </a>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+                        <form asp-controller="Factors" asp-action="DebtIndex" >
+                        <div class="input-text input-text-icon">
+                            <input type="text" asp-for="@Model.search" asp-route-search="@Model.search" name="search" placeholder="جستجو بر اساس نام و قیمت و آیدی" />
+                            <button type="submit" class="input-icon">
+                                <img src="~/content/img/search.png" />
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        شماره فاکتور
+                                    </th>
+                                    <th scope="col">
+                                        نام مشتری
+                                    </th>
+                                    <th scope="col">
+                                        مبلغ کل فاکتور
+                                    </th>
+                                    <th scope="col">
+                                        وضعیت فاکتور
+                                    </th>
+                                    <th scope="col">جزئیات</th>
+                                    <th scope="col">ویرایش اطلاعات</th>
+                                    @*<th scope="col">حذف</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.factors) {
+                                <tr>
+                                    <td data-label="شماره فاکتور">
+                                        @item.factor.FactorNo
+                                    </td>
+                                    <td data-label="نام مشتری">
+                                        <a asp-action="Details" asp-controller="Customer" asp-route-id="@item.factor.CustomerId"> 
+                                            @item.factor.Customer.Name.ToString()
+                                        @*@{
+                                            DB_context db = new DB_context();
+                                            db.customers.Where(p => p.Id == item.CustomerId).
+                                            Select(p => p.Name).FirstOrDefault();
+
+                                            var x = 2;
+                                        }*@
+                                            </a>
+
+                                    </td>
+                                    <td data-label="مبلغ کل فاکتور">
+                                        @item.factor.Price
+                                    </td>
+                                    <td data-label="وضعیت فاکتور">
+                                    @{
+                                        
+                                            <span class="color-danger">مانده</span>
+                                        
+                                    }
+                                    @*<span class="color-success">@debtStatus</span>*@
+                                        @*<span class="color-success">تسویه شده</span>*@
+                                        @*<span class="color-danger">مانده</span>*@
+                                    </td>
+                                    <td data-label="جزئیات">
+                                        <a asp-action="Details" asp-route-id="@item.factor.Id">مشاهده</a>
+                                    </td>
+                                    <td data-label="ویرایش اطلاعات">
+                                        <a asp-action="Edit" asp-route-id="@item.factor.Id">ویرایش
+                                            اطلاعات</a>
+                                    </td>
+                                    @*<td data-label="حذف">
+                                        <a asp-action="DeleteCustomer" asp-route-id="@item.Id" class="link-remove"><img src="~/content/img/remove.png"/> </a>
+                                    </td>*@
+
+
+                                </tr>
+                          
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="paginate">
+                            <ul class="paging-t">
+                                <li>
+                                    @*<a href="#" class="perv-page"></a>*@
+                                    @if (Model.currentPage > 1)
+                                    {
+                                        <a class="perv-page" asp-controller="Factors" asp-action="DebtIndex"
+                                    asp-route-pageNumber="@ViewBag.privPage"
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10"></a>
+                                    }
+                                </li>
+                                @for (int i = 1; i <= pageCount; i++){
+                                <li>
+                                    @if (Model.currentPage == i)
+                                    {
+                                        <a class="current" asp-controller="Factors" asp-action="DebtIndex"
+                                    asp-route-pageNumber="@i"
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10">@i</a>
+                                    }else{
+                                        <a asp-controller="Factors" asp-action="DebtIndex"
+                                    asp-route-pageNumber="@i" 
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10">@i</a>
+                                    }
+                                </li>
+                                }
+                                @*<li>
+                                    <a href="#">2</a>
+                                </li>*@
+                                @*<li>
+                                    <text> ... </text>
+                                </li>*@
+                                @*<li>
+                                    <a href="#" class="current">3</a>
+                                </li>*@
+                        
+                                <li>
+                                    @*<a href="#" class="next-page"></a>*@
+                                    @if (ViewBag.tempPaige <= pageCount)
+                                    {
+                                        <a class="next-page" asp-controller="Factors" asp-action="DebtIndex"
+                                    asp-route-pageNumber="@ViewBag.tempPaige" 
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10"></a>
+                                    }
+                                </li>
+        
+                            </ul>
+        
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+        </section>
+

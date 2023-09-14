@@ -1,0 +1,213 @@
+﻿@model HamedProject02.Models.OutPutDebtPaging
+
+@{
+    ViewData["Title"] = "لیست عملیات بانکی";
+    Layout = "_myLayout";
+}
+@{var pageCount = Math.Ceiling((decimal)Model.totalRecord / 10);}
+<header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="~/content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">لیست عملیات بانکی</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <fieldset class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <a type="submit" asp-action="Create" class="btn btn-success-outline"> <img src="~/content/img/add.png"> عملیات بانکی
+                            جدید </a>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+                        <form asp-controller="Debts" asp-action="Index" >
+                        <div class="input-text input-text-icon">
+                            <input type="text" asp-for="@Model.search" asp-route-search="@Model.search" name="search" placeholder="جستجو بر اساس نام و قیمت و آیدی" />
+                            <button type="submit" class="input-icon">
+                                <img src="~/content/img/search.png" />
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                   
+                                    <th scope="col">
+                                        نام مشتری
+                                    </th>
+                                    <th scope="col">
+                                        مبلغ مانده اولیه
+                                    </th>
+                                    <th scope="col">
+                                        وضعیت پرداخت
+                                    </th>
+                                    <th scope="col">جزئیات</th>
+                                    <th scope="col">ویرایش اطلاعات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.debts) {
+                                <tr>
+                                
+                                    <td data-label="نام مشتری">
+                                        <a asp-action="Details" asp-controller="Customer" asp-route-id="@item.CustomerId">
+                                            @Model.customers.Where(p => p.Id == item.CustomerId).Select(p => p.Name).FirstOrDefault().ToString()
+                                        </a>
+
+                                    </td>
+                                    <td class="price-format" data-label="مبلغ مانده اولیه">
+                                        @item.Price
+                                    </td>
+                                    <td data-label="وضعیت پرداخت">
+                                        @{
+                                            var debtStatus = Model.debtPayments.Where(p => p.DebtId == item.Id).Select(p => p.Price).Sum();
+                                            debtStatus = item.Price - debtStatus;
+                                            if (debtStatus == 0)
+                                            {
+                                                    <span class="color-success">تسویه شده</span>
+                                            }else{
+                                                    <span class="color-danger">مانده</span>
+                                            }
+                                        }
+                                        @*<span class="color-success">تسویه شده</span>*@
+                                        @*<span class="color-danger">مانده</span>*@
+                                    </td>
+                                    <td data-label="جزئیات">
+                                        <a asp-action="Details" asp-route-id="@item.Id">مشاهده</a>
+                                    </td>
+                                    <td data-label="ویرایش اطلاعات">
+                                        <a asp-action="Edit" asp-route-id="@item.Id">ویرایش
+                                            اطلاعات</a>
+                                    </td>
+        
+
+
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="paginate">
+                            <ul class="paging-t">
+                                <li>
+                                    @*<a href="#" class="perv-page"></a>*@
+                                    @if (Model.currentPage > 1)
+                                    {
+                                        <a class="perv-page" asp-controller="Debts" asp-action="Index"
+                                    asp-route-pageNumber="@ViewBag.privPage"
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10"></a>
+                                    }
+                                </li>
+                                @for (int i = 1; i <= pageCount; i++){
+                                <li>
+                                    @*<a href="#">1</a>*@
+                                    @if (Model.currentPage == i)
+                                    {
+                                        <a class="current" asp-controller="Debts" asp-action="Index"
+                                    asp-route-pageNumber="@i"
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10">@i</a>
+                                    }else{
+                                        <a asp-controller="Debts" asp-action="Index"
+                                    asp-route-pageNumber="@i" 
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10">@i</a>
+                                    }
+                                </li>
+                                }
+                                @*<li>
+                                    <a href="#">2</a>
+                                </li>*@
+                                @*<li>
+                                    <text> ... </text>
+                                </li>*@
+                                @*<li>
+                                    <a href="#" class="current">3</a>
+                                </li>*@
+                        
+                                <li>
+                                    @*<a href="#" class="next-page"></a>*@
+                                    @if (ViewBag.tempPaige <= pageCount)
+                                    {
+                                        <a class="next-page" asp-controller="Debts" asp-action="Index"
+                                    asp-route-pageNumber="@ViewBag.tempPaige" 
+                                    asp-route-search="@Model.search"
+                                    asp-route-countRecord="10"></a>
+                                    }
+                                </li>
+        
+                            </ul>
+        
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+        </section>
+
+@*<h1>Index</h1>*@
+
+@*<p>*@
+    @*<a asp-action="Create">Create New</a>*@
+@*</p>*@
+@*<table class="table">*@
+    @*<thead>*@
+        @*<tr>*@
+            @*<th>*@
+                @*@Html.DisplayNameFor(model => model.Price)*@
+            @*</th>*@
+            @*<th>*@
+                @*@Html.DisplayNameFor(model => model.Detail)*@
+            @*</th>*@
+            @*<th>*@
+                @*@Html.DisplayNameFor(model => model.Created)*@
+            @*</th>*@
+            @*<th>*@
+                @*@Html.DisplayNameFor(model => model.Customer)*@
+            @*</th>*@
+            @*<th></th>*@
+        @*</tr>*@
+    @*</thead>*@
+    @*<tbody>*@
+@*@foreach (var item in Model) {*@
+        @*<tr>*@
+            @*<td>*@
+                @*@Html.DisplayFor(modelItem => item.Price)*@
+            @*</td>*@
+            @*<td>*@
+                @*@Html.DisplayFor(modelItem => item.Detail)*@
+            @*</td>*@
+            @*<td>*@
+                @*@Html.DisplayFor(modelItem => item.Created)*@
+            @*</td>*@
+            @*<td>*@
+                @*@Html.DisplayFor(modelItem => item.Customer.Name)*@
+            @*</td>*@
+            @*<td>*@
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            @*</td>*@
+        @*</tr>*@
+@*}*@
+    @*</tbody>*@
+@*</table>*@

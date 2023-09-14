@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="content/css/admin/style.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <header class="side-header">
+            <div class="site-info">
+                <div class="close-menu"><img src="content/img/close.png"></div>
+                <a href="#"><img src="content/img/logo.png"></a>
+            </div>
+            <div class="user-control">
+                <a href="#"><img src="content/img/user.png"></a>
+                <a href="#"><img src="content/img/logout.png"></a>
+            </div>
+        </header>
+        <nav class="side-body">
+            <ul class="menu">
+                <li class="active">
+                    <a href="#">
+                        <img src="content/img/dashboard.png">
+                        <h3> داشبرد</h3>
+                    </a>
+                </li>
+                <li class="has-sub">
+                    <a>
+                        <img src="content/img/barcode.png">
+
+                        <h3>فاکتورها </h3>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="#"> افزودن فاکتور </a>
+                        </li>
+                        <li>
+                            <a href="#"> لیست فاکتورها </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a>
+                        <img src="content/img/users.png">
+
+                        <h3> مشتری </h3>
+                    </a>
+
+                    <ul>
+                        <li>
+                            <a href="#"> افزودن مشتری </a>
+                        </li>
+                        <li>
+                            <a href="#"> لیست مشتری ها </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <img src="content/img/credit.png">
+
+                        <h3> لیست بدهی ها </h3>
+                    </a>
+
+
+                </li>
+
+            </ul>
+  
+        </nav>
+    </aside>
+
+
+    <main class="main">
+        <header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">لیست مشتری</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time">امروز یکشنبه ۴ اسفند ۱۳۹۸</time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <fieldset class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <button type="submit" class="btn btn-success-outline"> <img src="content/img/add.png"> مشتری
+                            جدید </button>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-text input-text-icon">
+                            <input type="text" placeholder="جستجو ..." />
+                            <div class="input-icon">
+                                <img src="content/img/search.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        نام
+                                    </th>
+                                    <th scope="col">
+                                        شماره تماس
+                                    </th>
+                                    <th scope="col">
+                                        فاکتورها
+                                    </th>
+
+                                    <th scope="col">جزئیات</th>
+                                    <th scope="col">ویرایش اطلاعات</th>
+                                    <th scope="col">حذف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label="نام">
+                                        علی احمدی
+                                    </td>
+                                    <td data-label="شماره تماس">
+                                        09356589903
+
+                                    </td>
+                                    <td data-label="فاکتورها">
+                                        <a href="#">لیست فاکتورها</a>
+                                    </td>
+
+                                    <td data-label="جزئیات">
+                                        <a href="#">مشاهده</a>
+                                    </td>
+                                    <td data-label="ویرایش اطلاعات">
+                                        <a href="#">ویرایش
+                                            اطلاعات</a>
+                                    </td>
+                                    <td data-label="حذف">
+                                        <a href="#" class="link-remove"><img src="content/img/remove.png"/> </a>
+                                    </td>
+
+
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="paginate">
+                            <ul class="paging-t">
+                                <li>
+                                    <a href="#" class="perv-page"></a>
+                                </li>
+                                <li>
+                                    <a href="#">1</a>
+                                </li>
+                                <li>
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <text> ... </text>
+                                </li>
+                                <li>
+                                    <a href="#" class="current">3</a>
+                                </li>
+                        
+                                <li>
+                                    <a href="#" class="next-page"></a>
+                                </li>
+        
+                            </ul>
+        
+                        </div>
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+        </section>
+
+    </main>
+
+
+
+    <script src="content/scripts/jquery-3.1.1.min.js"></script>
+    <script src="content/scripts/adminscript.js"></script>
+</body>
+
+</html>

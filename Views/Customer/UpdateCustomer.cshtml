@@ -1,0 +1,110 @@
+﻿@using HamedProject02.Helper
+@model DataLayer02.Domain.Customer
+
+@{
+    ViewData["Title"] = "ویرایش مشتری";
+    Layout = "_myLayout";
+}
+
+ <header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">ویرایش مشتری</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+        </header>
+         <form asp-controller="Customer" asp-action="UpdateCustomer" method="post">
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <input type="hidden" asp-for="Id" />
+        <section class="main-body">
+            <fieldset class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label> نام و نام خانوادگی </label>
+
+                            <input asp-for="Name" type="text" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label> شماره تماس </label>
+
+                            <input asp-for="PhoneNumber" type="text"/>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-text">
+                            <label>آدرس </label>
+
+                            <textarea asp-for="Adress"></textarea>
+
+                        </div>
+                    </div>
+             
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <footer class="form-footer clean-float">
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                            </div>
+
+                            <div class="float-left">
+                                <a href="/Home/Index" class="link link-back">بازگشت</a>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+
+            </fieldset>   
+
+
+        </section>
+        </form>
+
+@*<h1>UpdateCustomer</h1>*@
+
+@*<h4>Customer</h4>*@
+@*<hr />*@
+@*<div class="row">*@
+    @*<div class="col-md-4">*@
+        @*<form asp-action="UpdateCustomer">*@
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            @*<input type="hidden" asp-for="Id" />*@
+            @*<div class="form-group">*@
+                @*<label asp-for="Name" class="control-label"></label>*@
+                @*<input asp-for="Name" class="form-control" />*@
+                @*<span asp-validation-for="Name" class="text-danger"></span>*@
+            @*</div>*@
+            @*<div class="form-group">*@
+                @*<input type="submit" value="Save" class="btn btn-primary" />*@
+            @*</div>*@
+        @*</form>*@
+    @*</div>*@
+@*</div>*@
+
+@*<div>*@
+    @*<a asp-action="Index">Back to List</a>*@
+@*</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

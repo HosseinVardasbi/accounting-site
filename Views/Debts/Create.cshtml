@@ -1,0 +1,375 @@
+﻿@model HamedProject02.Models.DebtPaymentViewModel
+
+@{
+    ViewData["Title"] = "عملیات بانکی";
+    Layout = "_myLayout";
+}
+
+<header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="~/content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">عملیات بانکی</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <fieldset class="container-fluid">
+                <form id="create" class="form" asp-antiforgery="true"
+                          onsubmit="return sendDataToServer(event)">
+                          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <div class="input-drop">
+                            <label> نام مشتری </label>
+
+                            <select asp-for="CustomerId" asp-items="ViewBag.CustomerId" class="search-select">
+                                @*<option value="0">علی احمدی</option>*@
+                                @*<option value="1">حسین محمودی</option>*@
+                            </select>
+
+
+
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label>  </label>
+
+                            <div class="mt-4">
+                                <span class="color-default">نام مشتری ثبت نشده؟</span>
+                            <a asp-controller="Customer" asp-action="AddCustomer">اضافه کنید</a>
+
+                            </div>
+
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="row">                
+                    <div class="col-md-6">
+                        <div class="input-text">
+                            <label> مبلغ بدهی اولیه </label>
+
+                            <input asp-for="DPrice" type="text" class="price_type"/>
+                            <span asp-validation-for="DPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-text">
+                            <label>توضیحات </label>
+
+                            <textarea asp-for="DDetail"></textarea>
+
+                        </div>
+                    </div>
+             
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-text">
+                            <label>تاریخ </label>
+
+                            <input asp-for="Created" type="text" class="datepicker-input" />
+
+                        </div>
+                    </div>
+             
+
+                </div>
+
+                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-text">
+                            <label>پرداختی ها </label>
+                        </div> 
+                        
+                          <div class="pay-wrapper">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-drop">
+                                <label> نحوه پرداخت </label>
+    
+                                <select id="txtPaymentType">
+                                    <option value="0">نقدی</option>
+                                    <option value="1">دستگاه پوز</option>
+                                    <option value="2">کارت به کارت</option>
+                                    <option value="3">چک</option>
+                                </select>
+    
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-text">
+                                <label> مبلغ پرداخت</label>
+    
+                                <input type="text" class="price_type" id="txtValue"/>
+    
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-text">
+                                <label> توضیحات</label>
+    
+                                <input type="text" id="detailtxtValue"/>
+    
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            
+                             <a class="btn mt-5 btn-success" id="btnAddFeatures">افزودن</a>
+                        </div>
+                    </div>
+                </div>
+                        <div class="card col-md-12">
+                              
+                            <div class="card-body col-md-12">
+                                <table id="tbl_Features" class="col-md-12 table table-bordered table-hover  table-condensed table-responsive">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>
+                                                نوع پرداخت
+                                            </th>
+                                            <th>
+                                                مبلغ
+                                            </th>
+                                            <th>
+                                                توضیحات
+                                            </th>
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="row">
+                    <div class="col-md-12">
+                        <div class="input-text">
+                            <label>پرداختی ها </label>
+                        </div>                       
+                    </div>
+                </div>*@
+                @*<div class="pay-wrapper">
+                    <div class="row">*@
+                        @*<div class="col-md-3">
+                            <div class="input-drop">
+                                <label> نحوه پرداخت </label>
+    
+                                <select>
+                                    <option value="0">نقدی</option>
+                                    <option value="1">دستگاه پوز</option>
+                                    <option value="2">کارت به کارت</option>
+                                    <option value="3">چک</option>
+                                </select>
+    
+                            </div>
+                        </div>*@
+                        @*<div class="col-md-3">
+                            <div class="input-text">
+                                <label> مبلغ پرداخت</label>
+    
+                                <input type="text" class="price_type"/>
+    
+                            </div>
+                        </div>*@
+                        @*<div class="col-md-3">
+                            <div class="input-text">
+                                <label> توضیحات</label>
+    
+                                <input type="text"/>
+    
+                            </div>
+                        </div>*@
+                    @*</div>
+                </div>*@
+                @*<div class="row clean-float">
+                    <div class="float-right">
+                        <button class="btn btn-default-outline add-payment">پرداخت بیشتر </button>
+                    </div>
+                </div>*@
+                <div class="row">
+                    <div class="col-md-12">
+                        <footer class="form-footer clean-float">
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-success">ثبت مانده اولیه </button>
+                            </div>
+
+                            <div class="float-left">
+                                <a asp-controller="Home" asp-action="Index" class="link link-back">بازگشت</a>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+                </form>
+            </fieldset>   
+           
+
+        </section>
+
+@section scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+     <script>
+        $('.datepicker-input').persianDatepicker({
+           format: 'YYYY/MM/DD',
+        });
+
+        $("#btnAddFeatures").on("click", function () {
+            var txtPaymentType = $("#txtPaymentType option:selected").text();// $("#txtDisplayName").val();
+            var txtValue = $("#txtValue").val();
+            var detailtxtValue = $("#detailtxtValue").val();
+            var txtPropId = $("#txtPaymentType").val();
+
+            if (txtPaymentType == "" || txtValue == "") {
+                alert(
+                    "نوع پرداخت و مبلغ اجباری هستند"
+                );
+            }
+            else {
+                $('#tbl_Features tbody').append('<tr><td>' + txtPaymentType + '</td>  <td>' + txtValue + '</td> <td>' + detailtxtValue + '</td> <td>' + txtPropId + '</td> <td> <a class="idFeatures btnDelete btn btn-danger"> حذف </a> </td> </tr>');
+                $("#txtPaymentType").val('');
+                $("#txtValue").val('');
+                $("#detailtxtValue").val('');
+            }
+        });
+
+        $("#tbl_Features").on('click', '.idFeatures', function () {
+            $(this).closest('tr').remove();
+        });
+
+        function sendDataToServer(e) {
+           // alert('qwdqew');
+            //  debugger;
+            e.preventDefault();
+            var form = $("#create");
+            form.validate();
+            if (form.valid() == false) {
+                alert(
+                    "اطلاعات فرم به درستی وارد نشده است!"
+                );
+                return false;
+            }
+            // alert('qwdqew1');
+            var data = new FormData();
+            //دریافت مقادیر از تکس باکس ها و....
+            data.append("DPrice", $("#DPrice").val().replaceAll(",",""));
+            data.append("DDetail", $("#DDetail").val());
+            data.append("Created", $("#Created").val());
+            data.append("CustomerId", $("#CustomerId").val());
+            
+            //دریافت ویژگی های محصول از جدول
+            var paymentV  = $('#tbl_Features tr:gt(0)').map(function () {
+                return {
+                    
+                    PPrice: $(this.cells[1]).text(),
+                    Type: $(this.cells[3]).text(),
+                    PDetail: $(this.cells[2]).text(),
+                };
+            }).get();
+          //  alert(paymentV);
+            $.each(paymentV, function (i, val) {
+                //data.append('Features[' + i + '].Key', val.DisplayName);
+                data.append('DPaymentViewModels[' + i + '].PPrice', val.PPrice.replaceAll(",",""));
+                data.append('DPaymentViewModels[' + i + '].Type', val.Type);
+                data.append('DPaymentViewModels[' + i + '].PDetail', val.PDetail);
+            });
+            // debugger;
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "/Debts/create",
+                contentType: false,
+                processData: false,
+                data: data,
+                headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                success: function (data) {
+                    if (data == true) {
+                       alert(
+                            'کاتالوگ با موفقیت ثبت شد'
+                        );
+                        window.location.href = '/Debts/Index';// Url.Action("Index", "Factors");
+                        //.then(function() {
+                        //    alert('qadwcwe');
+                        //  window.location.href=  Url.Action("Index", "Factors");
+                       
+                        
+                        //});
+                    }
+                    else {
+                        alert(
+                            "دیتا ثبت نشد"
+                        );
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Do other operation
+            });
+
+        }
+    </script>
+}
+
+@*<h1>Create</h1>*@
+
+@*<h4>Debt</h4>*@
+@*<hr />*@
+@*<div class="row">*@
+    @*<div class="col-md-4">*@
+        @*<form asp-action="Create">*@
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            @*<div class="form-group">*@
+                @*<label asp-for="Price" class="control-label"></label>*@
+                @*<input asp-for="Price" class="form-control" />*@
+                @*<span asp-validation-for="Price" class="text-danger"></span>*@
+            @*</div>*@
+            @*<div class="form-group">*@
+                @*<label asp-for="Detail" class="control-label"></label>*@
+                @*<input asp-for="Detail" class="form-control" />*@
+                @*<span asp-validation-for="Detail" class="text-danger"></span>*@
+            @*</div>*@
+            @*<div class="form-group">*@
+                @*<label asp-for="Created" class="control-label"></label>*@
+                @*<input asp-for="Created" class="form-control" />*@
+                @*<span asp-validation-for="Created" class="text-danger"></span>*@
+            @*</div>*@
+            @*<div class="form-group">*@
+                @*<label asp-for="CustomerId" class="control-label"></label>*@
+                @*<select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>*@
+            @*</div>*@
+            @*<div class="form-group">*@
+                @*<input type="submit" value="Create" class="btn btn-primary" />*@
+            @*</div>*@
+        @*</form>*@
+    @*</div>*@
+@*</div>*@
+
+@*<div>*@
+    @*<a asp-action="Index">Back to List</a>*@
+@*</div>*@
+

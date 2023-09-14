@@ -1,0 +1,151 @@
+﻿@model DataLayer02.Domain.Debt
+@using DataLayer02.Domain
+@using HamedProject02.Helper
+@{
+    ViewData["Title"] = "جزئیات مانده اولیه";
+    Layout = "_myLayout";
+}
+
+<header class="main-header clean-float">
+            <div class="float-right">
+                <div class="minimize-menu">
+                    <img src="~/content/img/menu.png" />
+                </div>
+                <ul class="breadcrumb">
+                    <li class="one"><a href="#" class="active">جزئیات مانده اولیه @ViewBag.customerName</a></li>
+                </ul>
+            </div>
+
+            <div class="float-left">
+                <time class="date-time"></time>
+            </div>
+
+        </header>
+
+        <section class="main-body">
+            <article class="form-holder">
+                <ul class="details-item">
+                    <li>    
+                        <span> نام مشتری </span>
+                        <div>  <a asp-action="Details" asp-controller="Customer" asp-route-id="@Model.CustomerId">@ViewBag.customerName</a></div>
+                    </li>
+                  
+                    <li>    
+                        <span> مبلغ مانده اولیه</span>
+                        <div class="price-format"> @Model.Price  </div>
+                    </li>
+                    <li>    
+                        <span> وضعیت پرداخت</span>
+                        <div>     
+                            @if (ViewBag.debtStatus == 0)
+                            {
+                                <span class="color-success"> تسویه شده</span> 
+                            }else{
+                                 @*<span class="color-danger">@ViewBag.debtStatus تومان مانده</span> *@
+                                 <span class="price-format">@ViewBag.debtStatus </span> 
+                                 <span class="color-danger">مانده</span>
+                            }
+                            @*<span class="color-danger">2500000 تومان مانده</span> 
+                            <span class="color-success">2500000 تسویه شده</span> *@                            
+                        </div>
+                    </li>
+                    <li>    
+                        <span> لیست پرداختی </span>
+                        <div> 
+                            @{
+                                IEnumerable<DataLayer02.Domain.DebtPayment> payments = ViewBag.payments;
+                            }
+                            @foreach (var item in payments)
+                            {
+                                <div class="color-gray">
+                                    @switch(item.Type){
+                                        case PaymentType.Cart:
+                                            <span>کارت به کارت: </span>
+                                            break;
+                                        case PaymentType.chek:
+                                            <span>چک: </span>
+                                            break;
+                                        case PaymentType.Naqd:
+                                            <span>نقد: </span>
+                                            break;
+                                        case PaymentType.pos:
+                                            <span>کارتخوان: </span>
+                                            break;
+                                    }
+                                @*<span>@item.Type: </span>*@
+                                <span class="price-format">@item.Price </span>
+                                @if (@item.Detail != null)
+                                {
+                                    <span> - @item.Detail </span>
+                                }
+                                @*<span> - @item.Detail </span>*@
+                            </div>
+                            
+                            }
+                            @*<div class="color-gray">
+                                <span>چک: </span>
+                                <span>25000000 ریال </span>
+                            </div>
+                            <div class="color-gray">
+                                <span>نقدی: </span>
+                                <span>2200000 ریال </span>
+                            </div>*@
+                        </div>
+
+                    </li>
+                    <li>    
+                        <span> تاریخ </span>
+                        <div> @DateConverter.miladiToShamsi((DateTime)Model.Created) </div>
+                    </li>
+                    <li>    
+                        <span> توضیحات</span>
+                        <div> @Model.Detail  </div>
+                    </li>
+
+                    <li>    
+                        <span> ویرایش </span>
+                        <div> 
+                            <a asp-route-id="@Model.Id" asp-action="Edit">ویرایش مانده اولیه</a>
+                        </div>
+                    </li>
+                </ul>
+            </article> 
+
+        </section>
+
+@*<h1>Details</h1>*@
+
+@*<div>*@
+    @*<h4>Debt</h4>*@
+    @*<hr />*@
+    @*<dl class="row">*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.Price)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.Price)*@
+        @*</dd>*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.Detail)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.Detail)*@
+        @*</dd>*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.Created)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.Created)*@
+        @*</dd>*@
+        @*<dt class = "col-sm-2">*@
+            @*@Html.DisplayNameFor(model => model.Customer)*@
+        @*</dt>*@
+        @*<dd class = "col-sm-10">*@
+            @*@Html.DisplayFor(model => model.Customer.Name)*@
+        @*</dd>*@
+    @*</dl>*@
+@*</div>*@
+@*<div>*@
+    @*<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |*@
+    @*<a asp-action="Index">Back to List</a>*@
+@*</div>*@
